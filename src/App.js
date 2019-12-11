@@ -1,26 +1,46 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {Component} from 'react';
+import 'bootstrap/dist/css/bootstrap.css'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+
+  constructor(props){
+    super(props)
+    this.state= {
+      title: '...',
+      inputValue: ''
+    }
+    this.changeValue = this.changeValue.bind(this)
+  }
+
+  changeValue(e) {
+    this.setState({
+      inputValue: e.target.value,
+      title: e.target.value
+    })
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <nav aria-label="breadcrumb">
+          <ol className="breadcrumb">
+            <li className="breadcrumb-item active" aria-current="page">
+              {this.state.title}
+            </li>
+          </ol>
+        </nav>
+
+        <span htmlFor='title'> Get me a title</span>
+        <input
+          name='title'
+          className='form-control'
+          value={this.state.inputValue}
+          onChange={this.changeValue}
+        />
+
+      </div>
+    );
+  }
 }
 
 export default App;
